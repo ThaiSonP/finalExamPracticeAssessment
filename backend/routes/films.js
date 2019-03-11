@@ -8,5 +8,7 @@ router.get('/', db.getAllMovies);
 router.get('/average',db.getMoviesWithRatings);
 router.get('/info/:id',db.getAllInfoById)
 router.get('/genre/:id',db.getMoviesByGenre)
+router.post('/comment',db.createComment)
+router.post('/rating',db.createRating)
 
 module.exports = router;

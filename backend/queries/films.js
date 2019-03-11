@@ -73,9 +73,37 @@ const getMoviesByGenre = (req,res)=>{
     })
 }
 
+const createComment = (req,res)=>{
+  const body = req.body
+  db.none ('INSERT INTO comments (statement,movie_id) VALUES (${statement},${movie_id})',body)
+  .then(results=>{
+    res.status(200)
+    .json({
+      message:'comment created'
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
+const createRating = (req,res)=>{
+  const body = req.body
+  db.none ('INSERT INTO ratings (stars, movie_id) VALUES(${stars},${movie_id})',body)
+  .then(results=>{
+    res.status(200)
+    .json({
+      message:'rating created'
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
 module.exports={
   getAllMovies,
   getMoviesWithRatings,
   getAllInfoById,
-  getMoviesByGenre
+  getMoviesByGenre,
+  createComment,
+  createRating
 }
