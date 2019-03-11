@@ -54,15 +54,28 @@ const getAllInfoById = (req,res)=>{
   })
 }
 
-// const getMoviesByGenre = (req,res)=>{
-//   const id=req.params.id;
-//   db.any(
-//
-//   )
-// }
+const getMoviesByGenre = (req,res)=>{
+  const id=req.params.id;
+  db.any(
+    'SELECT movies.title, genres.movie_genre '+
+    'FROM movies '+
+    'JOIN genres '+
+    'ON movies.genre = genres.id '+
+    'WHERE genres.id = $1 ', id)
+    .then(responses=>{
+      res.status(200)
+      .json({
+        message: 'these are all the films for this genre',
+        data: responses
+      })
+    }).catch(err=>{
+      console.log(err)
+    })
+}
 
 module.exports={
   getAllMovies,
   getMoviesWithRatings,
-  getAllInfoById
+  getAllInfoById,
+  getMoviesByGenre
 }

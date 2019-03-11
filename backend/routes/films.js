@@ -7,6 +7,6 @@ const db = require ('../queries/films')
 router.get('/', db.getAllMovies);
 router.get('/average',db.getMoviesWithRatings);
 router.get('/info/:id',db.getAllInfoById)
-// router.get('/genre/:id',db)
+router.get('/genre/:id',db.getMoviesByGenre)
 
 module.exports = router;
