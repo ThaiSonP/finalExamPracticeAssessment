@@ -1,7 +1,14 @@
 const db = require('../seed/index')
 
 const getAllMovies = (req,res)=>{
-  db.any('select * from movies')
+  db.any(
+    'SELECT movies.id ,movies.title, movies.img_url, genres.movie_genre ,  AVG (STARS) '+
+      'FROM movies  '+
+      'JOIN ratings '+
+      'ON ratings.movie_id = movies.id '+
+      'JOIN genres '+
+      'ON movies.genre_id = genres.id '+
+      'GROUP BY movies.id, title, img_url , movie_genre')
   .then(response=>{
     res.status(200)
     .json({
@@ -14,7 +21,7 @@ const getAllMovies = (req,res)=>{
 }
 
 const getMoviesWithRatings = (req,res)=>{
-  db.any("SELECT title, AVG (STARS) FROM movies JOIN ratings ON movies.id = ratings.movie_id GROUP BY title ,genre, img_url")
+  db.any("SELECT title,img_url, AVG (STARS)  FROM movies JOIN ratings ON movies.id = ratings.movie_id GROUP BY title ,genre_id, img_url")
   .then(results=>{
     res.status(200)
     .json({
@@ -41,7 +48,7 @@ const getAllInfoById = (req,res)=>{
     'JOIN ratings '+
     'ON ratings.movie_id = movies.id '+
     'JOIN genres '+
-    'ON movies.genre = genres.id '+
+    'ON movies.genre_id = genres.id '+
     'WHERE movies.id = $1',id)
   .then(response=>{
     res.status(200)
@@ -60,7 +67,7 @@ const getMoviesByGenre = (req,res)=>{
     'SELECT movies.title, genres.movie_genre '+
     'FROM movies '+
     'JOIN genres '+
-    'ON movies.genre = genres.id '+
+    'ON movies.genre_id = genres.id '+
     'WHERE genres.id = $1 ', id)
     .then(responses=>{
       res.status(200)

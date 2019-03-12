@@ -6,9 +6,10 @@
     "axios": "^0.18.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8"
   },
-  "proxy": "http://localhost:3305",
+  "proxy": "http://localhost:3005",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
