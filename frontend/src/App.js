@@ -5,25 +5,27 @@ import './styling/App.css';
 import axios from 'axios'
 
 import Home from './routes/home/home.js'
-import Movies from './routes/movies/movies.js'
+// import Movies from './routes/movies/movies.js'
+import MovieForm from './routes/movies/movieform.js'
+import Singlemovie from './routes/movies/singlemovie.js'
 
 class App extends Component {
-  state={
-    films:[]
-  }
-
+  // state={
+  //   films:[]
+  // }
+  //
   // get all films
-  componentDidMount=()=>{
-    axios.get('/films')
-    .then(response=>{
-      this.setState({
-        films:response.data.data
-      })
-    })
-  }
+  // componentDidMount=()=>{
+  //   axios.get('/films')
+  //   .then(response=>{
+  //     this.setState({
+  //       films:response.data.data
+  //     })
+  //   })
+  // }
 
   render() {
-    const {films}=this.state
+    // const {films}=this.state
     // console.log(this.state)
     return (
       <div className="App">
@@ -32,9 +34,9 @@ class App extends Component {
             <Route exact path = '/'
               component={Home}/>
             <Route exact path ='/movies'
-              render={(props)=><Movies{...props}
-              films={films}/>}
-              />
+              component={MovieForm}/>
+            <Route path='/movies/:id'
+              render={(props)=><Singlemovie{...props} />}/>
           </Switch>
       </div>
     );
