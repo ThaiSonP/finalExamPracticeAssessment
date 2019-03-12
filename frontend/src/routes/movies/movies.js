@@ -1,21 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import '../../styling/movies.css'
 
-// export const Movies = (props) =>{
-class Movies extends Component{
-  constructor(props){
-    super(props)
-      this.state={
-        selected:''
-      }
-  }
-  render(){
+export const Movies = (props) =>{
 
-    const{films}=this.props
-    console.log(films)
+  if(props){
+    console.log(props.films)
 
-    const createFilms = films.map(el=>{
+    const createFilms = props.films.map(el=>{
       return(
         <div className = "filmBio" key={el.id}>
           <div className = 'moviePoster'>
@@ -42,8 +34,8 @@ class Movies extends Component{
       <div className="movies">
         {createFilms}
       </div>
-    )}
-
+    )
+  }
 }
 
 export default Movies
