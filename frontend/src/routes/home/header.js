@@ -14,7 +14,7 @@ export const Header = (props)=>{
         <div className = 'sortBy'>
           <Link to ='/movies'>All Movies</Link>
 
-          <p>By Genre</p>
+          <Link to ='/movies/bygenre'>By Genre</Link>
         </div>
       </div>
     </nav>

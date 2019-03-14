@@ -1,0 +1,25 @@
+.singleContainer{
+  display: flex;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: orange
+}
+
+.singleMovie{
+  padding: 75px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-style: solid;
+  border-color: white;
+  width: 400px;
+}
+
+.singleMovie img{
+  max-height: 200px;
+  max-width:300px
+}
